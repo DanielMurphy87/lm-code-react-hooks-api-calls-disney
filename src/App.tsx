@@ -14,13 +14,13 @@ const App: React.FC = () => {
   const [characters, setCharacters] = useState<Array<DisneyCharacter>>([]);
 
   useEffect(() => {
-    const getCharacters = async (pageNumber : number) => {
-    const apiResponse = await fetch(`http://api.disneyapi.dev/characters?page=${pageNumber}`);
-    const json = await apiResponse.json() as { data: DisneyCharacter[] };
+    const getCharacters = async (pageNumber: number) => {
+      const apiResponse = await fetch(`http://api.disneyapi.dev/characters?page=${pageNumber}`);
+      const json = await apiResponse.json() as { data: DisneyCharacter[] };
       setCharacters(json.data);
-  };
-    getCharacters(1);
-  }, []);
+    };
+    getCharacters(currentPage);
+  }, [currentPage]);
 
   return (
     <div className="page">
