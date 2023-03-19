@@ -4,13 +4,11 @@ import Character from "./character";
 
 interface CharacterContainerProps {
   characters: Array<DisneyCharacter>;
-  characterFavourites: Array<number>;
 	updateFavourites: (favourites: Array<number>) => void;
 }
 
 const CharacterContainer: React.FC<CharacterContainerProps> = ({
   characters,
-  characterFavourites,
   updateFavourites
 }) => {
 
@@ -20,7 +18,6 @@ const CharacterContainer: React.FC<CharacterContainerProps> = ({
         <Character 
                 key={character._id}
                 character={character}
-                characterFavourites={characterFavourites}
                 updateFavourites={updateFavourites}
         />
       ))}
