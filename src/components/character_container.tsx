@@ -1,25 +1,23 @@
 import React from "react";
 import { DisneyCharacter } from "../disney_character";
 import Character from "./character";
+import { useFavourites } from "../fav_char_context";
 
 interface CharacterContainerProps {
   characters: Array<DisneyCharacter>;
-	updateFavourites: (favourites: Array<number>) => void;
 }
 
 const CharacterContainer: React.FC<CharacterContainerProps> = ({
   characters,
-  updateFavourites
 }) => {
+  
+  const { favourites, isFavouritesPage } = useFavourites();
+  const page = !isFavouritesPage ? characters : favourites;
 
   return (
     <div className="card-container">
-      {characters.map((character) => (
-        <Character 
-                key={character._id}
-                character={character}
-                updateFavourites={updateFavourites}
-        />
+      {page.map((character) => (
+        <Character key={character._id} character={character} />
       ))}
     </div>
   );
